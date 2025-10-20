@@ -1,0 +1,33 @@
+[mysql]
+database = 'kookbot'
+host = 'mysql2.sqlpub.com'
+password = '18e95fb4e7f1cba7'
+port = 3307
+username = 'kookbot'
+
+[mysql.connpool]
+connmaxidletime = 30
+connmaxlifetime = 3600
+maxidleconns = 1
+maxopenconns = 50
+
+[server]
+debug = false
+port = 2333
+
+[sms]
+from = ''
+host = ''
+password = ''
+port = 0
+username = ''
+usessl = false
+
+[storage]
+platform = ''
+
+[storage.kodo]
+access_key = '6oq6j8gLVp73O7UkIbX2pCxtGl8JyEiTncq5Dk4N'
+bucket = 'review-system'
+secret_key = 'cId_X3wyI0biXXpWOD8Zu_J0ZkN3fg_-QauGhsmt'
+server = 'http://t3sk06w7t.hn-bkt.clouddn.com'

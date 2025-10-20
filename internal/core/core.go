@@ -9,6 +9,8 @@ import (
 	"os/signal"
 	"time"
 
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,7 +19,21 @@ type Core struct {
 }
 
 func New() *Core {
-	return &Core{core: gin.Default()}
+	router := gin.Default()
+
+	// 配置 session 中间件
+	store := cookie.NewStore([]byte("reviewappsecretkeyx1a2h1"))
+	store.Options(sessions.Options{
+		Path:     "/",
+		Domain:   "",
+		MaxAge:   86400 * 7, // 7天
+		Secure:   false,
+		HttpOnly: true,
+		SameSite: http.SameSiteStrictMode,
+	})
+	router.Use(sessions.Sessions("LOGIN_SESSION", store))
+
+	return &Core{core: router}
 }
 
 func (c *Core) Use(middleware ...func() gin.HandlerFunc) {
